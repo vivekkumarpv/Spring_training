@@ -1,0 +1,5 @@
+package com.ticketpedia.usermanagement.service;
+
+public class UserDetailsServiceImpl {
+
+}

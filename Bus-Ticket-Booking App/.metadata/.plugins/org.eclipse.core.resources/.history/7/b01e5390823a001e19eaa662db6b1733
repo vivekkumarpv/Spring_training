@@ -1,0 +1,10 @@
+package com.ticketpedia.usermanagement.service;
+
+import com.ticketpedia.usermanagement.model.User;
+
+public interface UserService {
+	public User CustomerSignUp(User user);
+
+	public User updateCustomerCredentials(User user);
+
+}
