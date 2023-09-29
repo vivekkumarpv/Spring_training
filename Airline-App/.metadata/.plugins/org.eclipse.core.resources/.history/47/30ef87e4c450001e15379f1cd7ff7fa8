@@ -1,0 +1,5 @@
+package com.airline.routes.contoller;
+
+public class AirlineRouteController {
+
+}

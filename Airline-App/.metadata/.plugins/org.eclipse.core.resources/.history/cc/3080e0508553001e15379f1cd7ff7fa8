@@ -1,0 +1,14 @@
+package com.airline.routes.service;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import com.airline.routes.dto.GetDetailedItineraryResponse;
+import com.airline.routes.model.AirlineRoute;
+
+public interface AirlineRouteService {
+	public List<AirlineRoute> getAllAirlineRoutes();
+	public List<AirlineRoute> searchAirline(String destination, String arrival, LocalDate date, String category );
+	public List<AirlineRoute> searchRouteForGivenSourceDestination(String arrival, String destination);
+	public List<GetDetailedItineraryResponse> getDetailedItinerary(int routeId);
+}

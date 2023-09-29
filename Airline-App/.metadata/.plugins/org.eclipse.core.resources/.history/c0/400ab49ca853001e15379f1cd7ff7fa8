@@ -1,0 +1,9 @@
+package com.airline.routes.dto;
+
+import java.time.LocalDate;
+
+public static class RouteInput{
+    private LocalDate date;
+    private String dep;
+    private String arr;
+

@@ -1,0 +1,9 @@
+package com.airline.routes.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.airline.routes.model.AirlineRoute;
+
+public interface AirlineRouteRepo extends JpaRepository<AirlineRoute, Integer> {
+
+}

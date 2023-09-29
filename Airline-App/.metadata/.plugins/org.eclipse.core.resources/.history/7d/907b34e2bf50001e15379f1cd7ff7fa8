@@ -1,0 +1,5 @@
+package com.airline.routes.service;
+
+public class AirlineRouteService {
+
+}

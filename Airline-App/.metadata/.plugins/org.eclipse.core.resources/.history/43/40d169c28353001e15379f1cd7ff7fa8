@@ -1,0 +1,35 @@
+package com.airline.routes.dto;
+
+import java.time.LocalDateTime;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Airport {
+
+	private int id;
+
+	private String iataCode;
+
+	private double lattitude;
+
+	private double longitude;
+
+	private String airportName;
+
+	private String city;
+	private String state;
+	private String country;
+	private String icao;
+
+	private int directFlights;
+
+	private LocalDateTime createdOn;
+
+	private LocalDateTime updatedOn;
+
+}

@@ -1,0 +1,43 @@
+package com.airline.routes.dto;
+
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+public class Airport {
+
+	private int id;
+
+	private String iataCode;
+
+	private double lattitude;
+
+	private double longitude;
+
+	private String airportName;
+
+	private String city;
+	private String state;
+	private String country;
+	private String icao;
+
+	private int directFlights;
+
+	private LocalDateTime createdOn;
+
+	private LocalDateTime updatedOn;
+
+}

@@ -1,0 +1,31 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: api-gateway-server
+
+cloud:
+  gateway:
+    routes:
+      
+
+      - id: airline-airport-ms
+        uri: lb://airline-airport-ms
+        predicates:
+          - Path=/api/airline/**
+          - Path=/api/airport/**  
+
+      - id: route-ms
+        uri: lb://route-ms
+        predicates:
+          - Path=/api/airline/routes/**
+
+    default-filters:
+      - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
+
+    globalcors:
+      cors-configurations:
+        '[/**]':
+          allowed-origins: "*"
+          allowed-methods: "*"
+          allowed-headers: "*"

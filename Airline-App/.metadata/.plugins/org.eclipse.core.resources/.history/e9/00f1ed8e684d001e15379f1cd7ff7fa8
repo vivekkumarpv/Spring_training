@@ -1,0 +1,5 @@
+package com.airline.flights.Model;
+
+public class Airline {
+	
+}

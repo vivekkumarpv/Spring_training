@@ -1,0 +1,17 @@
+package com.airline.routes.dto;
+
+import java.time.LocalDate;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class RouteInput {
+	private LocalDate date;
+	private String destination;
+	private String source;
+
+}

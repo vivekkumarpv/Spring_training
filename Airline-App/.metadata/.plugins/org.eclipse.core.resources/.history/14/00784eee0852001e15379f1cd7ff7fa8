@@ -1,0 +1,29 @@
+package com.airline.routes.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.airline.routes.model.AirlineRoute;
+
+public interface AirlineRouteRepo extends JpaRepository<AirlineRoute, Integer> {
+	
+	@Query("FROM AirlineRoute ar " +
+	           "WHERE ar.iataFrom =:arrival AND ar.iataTo =:destination " +
+	           "AND (CASE WHEN ar.day1 = 'no' THEN 1 ELSE 0 END = 1 " +
+	           "OR CASE WHEN ar.day2 = 'no' THEN 1 ELSE 0 END = 1 " +
+	           "OR CASE WHEN ar.day3 = 'yes' THEN 1 ELSE 0 END = 1 " +
+	           "OR CASE WHEN ar.day4 = 'no' THEN 1 ELSE 0 END = 1 " +
+	           "OR CASE WHEN ar.day5 = 'no' THEN 1 ELSE 0 END = 1 " +
+	           "OR CASE WHEN ar.day6 = 'no' THEN 1 ELSE 0 END = 1 " +
+	           "OR CASE WHEN ar.day7 = 'no' THEN 1 ELSE 0 END = 1) " +
+	           "AND (" +
+	           "(CASE WHEN ar.classBusiness = false THEN 1 ELSE 0 END = 1) AND " +
+	           "(CASE WHEN ar.classEconomy = true THEN 1 ELSE 0 END = 1) AND " +
+	           "(CASE WHEN ar.classFirst = false THEN 1 ELSE 0 END = 1)" +
+	           ")")
+
+	public List<AirlineRoute> searchAirline(String destination, String arrival, List<String> dayStatus, List<Boolean>categoryStatus );
+
+}

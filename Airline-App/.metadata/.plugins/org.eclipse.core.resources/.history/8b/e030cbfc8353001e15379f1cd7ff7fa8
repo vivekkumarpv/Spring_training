@@ -1,0 +1,6 @@
+package com.airline.routes.dto;
+
+public class GetDetailedItineraryResponse {
+	public int id;
+	public Airport flyingFrom;
+}

@@ -1,0 +1,40 @@
+package com.airline.routes.model;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class AirlineRoute {
+	@Id
+	private int id;
+	private String iataFrom;
+	private String iataTo;
+	private String airLineIata;
+	private String airportVia;
+
+	private boolean classBusiness;
+	private boolean classBconomy;
+	private boolean classFirst;
+
+	private String day1;
+	private String day2;
+	private String day3;
+	private String day4;
+	private String day5;
+	private String day6;
+	private String day7;
+
+	private int flightsPerDay;
+	private int flightsPerWeek;
+
+	private int maxDuration;
+	private int minDuration;
+
+}

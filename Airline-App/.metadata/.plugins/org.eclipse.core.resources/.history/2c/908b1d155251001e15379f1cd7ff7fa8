@@ -1,0 +1,12 @@
+package com.airline.flights.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.airline.flights.Model.Airport;
+
+
+public interface AirportService {
+	public List<Airport> getAllAirports();
+}

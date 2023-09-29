@@ -1,0 +1,39 @@
+package com.airline.flights.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import com.airline.flights.Model.AirlineRoute;
+
+@Repository
+public interface AirlineRouteRepo extends JpaRepository<AirlineRoute, Integer> {
+
+	
+	@Query(value = "select *,(max_duration + min_duration) / 2 AS avgDuration FROM airline_route WHERE iata_from = :arrival AND iata_to = :destination ORDER BY avgDuration ASC", nativeQuery =true)
+	//@Query(value="from AirlineRoute WHERE iataFrom = :arrival AND iataTo = :destination ")
+	public List<AirlineRoute> searchRouteForGivenSourceDestination(String arrival, String destination);
+
+	@Query("FROM AirlineRoute WHERE iataFrom = :arrival AND iataTo = :destination AND airLineIata IN :airlines")
+	public List<AirlineRoute> searchRouteForGivenSourceDestinationAirlines(@Param("arrival") String arrival,
+			@Param("destination") String destination, @Param("airlines") List<String> airlines);
+
+//	@Query("FROM AirlineRoute WHERE iataFrom =:arrival AND iataTo =:destination "
+//			+ "AND (CASE WHEN day1 = :dayStatus.get(0) THEN 1 ELSE 0 END = 1 "
+//			+ "OR CASE WHEN day2 = :dayStatus.get(1) THEN 1 ELSE 0 END = 1 "
+//			+ "OR CASE WHEN day3 = :dayStatus.get(2) THEN 1 ELSE 0 END = 1 "
+//			+ "OR CASE WHEN day4 = :dayStatus.get(3) THEN 1 ELSE 0 END = 1 "
+//			+ "OR CASE WHEN day5 = :dayStatus.get(4) THEN 1 ELSE 0 END = 1 "
+//			+ "OR CASE WHEN day6 = :dayStatus.get(5) THEN 1 ELSE 0 END = 1 "
+//			+ "OR CASE WHEN day7 = :dayStatus.get(6) THEN 1 ELSE 0 END = 1) " + "AND ("
+//			+ "(CASE WHEN classBusiness = :categoryStatus.get(0) THEN 1 ELSE 0 END = 1) AND "
+//			+ "(CASE WHEN classEconomy = :categoryStatus.get(1) THEN 1 ELSE 0 END = 1) AND "
+//			+ "(CASE WHEN classFirst = :categoryStatus.get(2) THEN 1 ELSE 0 END = 1)" + ")")
+//
+//	public List<AirlineRoute> searchAirline(String destination, String arrival, List<String> dayStatus,
+//			List<Boolean> categoryStatus);
+
+}

@@ -1,0 +1,5 @@
+package com.airline.flights.repository;
+
+public class AirlineRepo {
+
+}

@@ -1,0 +1,5 @@
+package com.airline.flights.service;
+
+public class AirportService {
+
+}

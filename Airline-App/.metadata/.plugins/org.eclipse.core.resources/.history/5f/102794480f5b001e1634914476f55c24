@@ -1,0 +1,43 @@
+package com.airline.routes.dto;
+
+
+public class GetDetailedItineraryResponse {
+	public int id;
+	public Airport flyingFrom;
+	public Airport flyingTo;
+	public Airline airline;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public Airport getFlyingFrom() {
+		return flyingFrom;
+	}
+	public GetDetailedItineraryResponse() {
+		
+	}
+	public GetDetailedItineraryResponse(int id, Airport flyingFrom, Airport flyingTo, Airline airline) {
+		
+		this.id = id;
+		this.flyingFrom = flyingFrom;
+		this.flyingTo = flyingTo;
+		this.airline = airline;
+	}
+	public void setFlyingFrom(Airport flyingFrom) {
+		this.flyingFrom = flyingFrom;
+	}
+	public Airport getFlyingTo() {
+		return flyingTo;
+	}
+	public void setFlyingTo(Airport flyingTo) {
+		this.flyingTo = flyingTo;
+	}
+	public Airline getAirline() {
+		return airline;
+	}
+	public void setAirline(Airline airline) {
+		this.airline = airline;
+	}
+}

@@ -1,0 +1,5 @@
+package com.airline.routes.dto;
+
+public class MultiCityRouteRequestBody {
+
+}

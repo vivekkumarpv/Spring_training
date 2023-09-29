@@ -1,0 +1,30 @@
+server:
+  port: 8888 # Set the port for your API Gateway
+
+spring:
+  application:
+    name: api-gateway
+
+cloud:
+  gateway:
+    routes:
+      - id: airline-airport-ms
+        uri: http://localhost:8100 # Replace with the actual URL of your first microservice
+        predicates:
+          - Path=/api/airline/**
+          - Path=/api/airport/**
+
+      - id: route-ms
+        uri: http://localhost:8200 # Replace with the actual URL of your second microservice
+        predicates:
+          - Path=/api/airline/routes/**
+
+    default-filters:
+      - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
+
+    globalcors:
+      cors-configurations:
+        '[/**]':
+          allowed-origins: "*"
+          allowed-methods: "*"
+          allowed-headers: "*"

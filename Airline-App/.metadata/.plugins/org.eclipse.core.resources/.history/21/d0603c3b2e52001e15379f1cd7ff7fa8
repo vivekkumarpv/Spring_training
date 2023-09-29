@@ -1,0 +1,42 @@
+package com.airline.routes.contoller;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.airline.routes.model.AirlineRoute;
+import com.airline.routes.service.AirlineRouteService;
+
+@RestController
+@RequestMapping("/api/airline/routes")
+public class AirlineRouteController {
+
+	@Autowired
+	AirlineRouteService airlineRouteService;
+
+	@GetMapping
+	public List<AirlineRoute> fetchAllAirlineRoute() {
+		return airlineRouteService.getAllAirlineRoutes();
+
+	}
+
+	@GetMapping("/filter/{arrival}/{destination}/{date}/{category}")
+	public List<AirlineRoute> searchAirlineRoutes(@PathVariable String destination, @PathVariable String arrival,
+			@PathVariable("date") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date,
+			@PathVariable String category) {
+		return airlineRouteService.searchAirline(destination, arrival, date, category);
+
+	}
+
+	@GetMapping("/search/{arrival}/{destination}")
+	public List<AirlineRoute> searchRouteForGivenSourceDestination(@PathVariable String arrival,
+			@PathVariable String destination) {
+		return airlineRouteService.searchRouteForGivenSourceDestination(arrival, destination);
+	}
+}

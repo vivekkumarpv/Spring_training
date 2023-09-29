@@ -1,0 +1,13 @@
+package com.airline.flights.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.airline.flights.Model.Airport;
+
+public interface AirportRepo extends JpaRepository<Airport, Integer> {
+	
+	@Query("from Airport where iataCode=:iataCode")
+	public Airport getAirportByIataCode(String iataCode);
+
+}

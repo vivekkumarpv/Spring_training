@@ -1,0 +1,8 @@
+package com.airline.flights.service;
+
+import com.airline.flights.Model.Airline;
+
+public interface AirlineService {
+	public List<Airline> getAirLine();
+
+}

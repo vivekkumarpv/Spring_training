@@ -1,0 +1,13 @@
+package com.airline.flights.service;
+
+import java.util.List;
+
+import com.airline.flights.Model.Airport;
+
+public interface AirportService {
+	public List<Airport> getAllAirports();
+
+	public Airport getAirportByIataCode(String iataCode);
+
+	//public List<Airport> getAirportSuggestions(String starting);
+}

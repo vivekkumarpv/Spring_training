@@ -1,0 +1,30 @@
+package com.airline.flights.service;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.client.RestTemplate;
+
+import com.airline.flights.Model.Airline;
+import com.airline.flights.repository.AirlineRepo;
+
+public class AirlineServiceImpl implements AirlineService {
+	private List<String> iataCodes = Arrays.asList("EK", "6E");
+	@Autowired
+	RestTemplate getFlight;
+
+	@Autowired
+	AirlineRepo airlineRepo;
+
+	@Override
+	public List<Airline> getAirLine() {
+		String url = "https://cdn.jsdelivr.net/gh/besrourms/airlines@latest/airlines.json";
+		List<Airline> airlineList = getFlight.getForObject(url, List.class);
+		for (Airline airline : airlineList) {
+			airlineRepo.save(airline);
+		}
+		return airlineList;
+	}
+
+}

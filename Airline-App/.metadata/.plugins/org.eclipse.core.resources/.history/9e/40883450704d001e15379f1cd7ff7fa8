@@ -1,0 +1,16 @@
+package com.airline.flights.service;
+
+import com.airline.flights.Model.Airline;
+
+public class AirlineServiceImpl implements AirlineService {
+	
+	@Autowired
+	RestTemplate productServiceClient;
+
+	@Override
+	public Airline getAirLine() {
+		
+		return null;
+	}
+
+}

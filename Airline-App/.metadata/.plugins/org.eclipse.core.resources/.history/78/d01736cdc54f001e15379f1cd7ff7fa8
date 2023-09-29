@@ -1,0 +1,15 @@
+package com.airline.flights.service;
+
+import java.util.List;
+
+import com.airline.flights.Model.Airport;
+
+public class AirportServiceImpl implements AirportService{
+
+	@Override
+	public List<Airport> getAllAirports() {
+		
+		return null;
+	}
+
+}

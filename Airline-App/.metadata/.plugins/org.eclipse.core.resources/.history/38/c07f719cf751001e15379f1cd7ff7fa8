@@ -1,0 +1,15 @@
+package com.airline.routes.repository;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.airline.routes.model.Airline;
+import com.airline.routes.model.AirlineRoute;
+
+public interface AirlineRouteRepo extends JpaRepository<AirlineRoute, Integer> {
+	
+	public List<Airline> searchAirline(String destination, String arrival, LocalDate date , String category);
+
+}
