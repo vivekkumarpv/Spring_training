@@ -1,0 +1,63 @@
+package com.ust.employee.app.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ust.employee.app.model.Employee;
+import com.ust.employee.app.repository.EmployeeRepo;
+
+@RestController
+@RequestMapping("/api/employee")
+public class EmployeeController {
+	
+	@Autowired
+	EmployeeRepo repo;
+	
+	@PostMapping
+	@ResponseStatus(code=HttpStatus.ACCEPTED)
+	public Employee addEmployee(@RequestBody Employee emp) {
+		return repo.save(emp);
+	}
+	
+	@GetMapping("/{id}")
+	@ResponseStatus(code=HttpStatus.OK)
+	public Employee getEmployeeById( @PathVariable int id) {
+		Optional<Employee> optEmp=repo.findById(id);
+		Employee emp=null;
+		if(optEmp.isPresent()) {
+			emp=optEmp.get();
+		}
+		return emp;
+	}
+	
+	@PutMapping("/{id}")
+	@ResponseStatus(code=HttpStatus.ACCEPTED)
+	public Employee updateEmployee(@PathVariable int id ,@RequestBody Employee emp) {
+		return repo.save(emp);
+	}
+	
+	@GetMapping()
+	@ResponseStatus(code=HttpStatus.OK)
+	public List<Employee> getAllEmployees() {
+		return repo.findAll();
+	}
+	
+	@DeleteMapping("/{id}")
+	@ResponseStatus(code=HttpStatus.OK)
+	public void deleteEmployeeById(@PathVariable int id) {
+		repo.deleteById(id);
+	}
+	
+}

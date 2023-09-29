@@ -1,0 +1,92 @@
+package com.ust.customerapp.ui;
+
+import java.time.LocalDate;
+import java.util.Scanner;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.ust.customerapp.model.Customer;
+import com.ust.customerapp.service.CustomerService;
+import com.ust.customerapp.service.CustomerServiceImpl;
+
+public class CustomerUI {
+
+	static Scanner scan;
+	static CustomerService service;
+
+	public static void addCustomer() {
+
+		System.out.println("Enter customer details : ");
+		System.out.print("ID : ");
+		int id = scan.nextInt();
+		System.out.print("Name : ");
+		String name = scan.next() + scan.nextLine();
+		System.out.print("Email : ");
+		String email = scan.next() + scan.nextLine();
+		System.out.print("Date : ");
+		String date = scan.nextLine();
+
+		Customer c = new Customer(id, name, email, LocalDate.parse(date));
+		service.addCustomer(c);
+		System.out.println("Customer added");
+
+	}
+
+	public static void updateCustomer() {
+
+		System.out.println("Enter customer details of customer to be updated : ");
+		System.out.print("ID : ");
+		int id = scan.nextInt();
+		System.out.print("Name : ");
+		String name = scan.next() + scan.nextLine();
+		System.out.print("Email : ");
+		String email = scan.next() + scan.nextLine();
+		System.out.print("Date : ");
+		String date = scan.nextLine();
+
+		Customer c = new Customer(id, name, email, LocalDate.parse(date));
+		service.updateCustomer(c);
+		System.out.println("Customer updated");
+
+	}
+
+	public static void displayCustomer() {
+		System.out.println("Customers");
+		service.getAllCustomers();
+		
+
+	}
+
+	public static void main(String[] args) {
+		ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+		scan = context.getBean(Scanner.class);
+		service = context.getBean(CustomerServiceImpl.class);
+		while (true) {
+			System.out.println("Enter your choice : ");
+			System.out.println("1 : Add Customer");
+			System.out.println("2 : Update Custmer");
+			System.out.println("0 : Exit");
+			int choice = scan.nextInt();
+			switch (choice) {
+			case 1:
+				addCustomer();
+				break;
+			case 2:
+				updateCustomer();
+				break;
+			case 3:
+				displayCustomer();
+			case 0:
+				System.out.println("Bye.....");
+				System.exit(1);
+				break;
+			default:
+				System.out.println("Unexpected value: " + choice);
+				break;
+			}
+		}
+
+	}
+
+}

@@ -1,0 +1,53 @@
+package com.ust.bookapp.model;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.Valid;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "book_table")
+
+public class Book {
+	
+	@Id
+	private int Id;
+	
+	@Column(name="title_name",length=50,nullable=false)
+	@NotBlank(message = "Title is required")
+	@Size(max=100,message="Title should not exceed 100 characters")
+	private String title;
+	
+	@NotBlank(message = "Author name is required")
+	@Size(max=200,message="Author name should not exceed 200 characters")
+	private String author;
+	
+	@Column(unique=true)
+	@Pattern(regexp = "^(\\d{10}||\\d{13})$",message = "The ISBN should be a valid 10- or 13-digit number")
+	private String isbn;
+	
+//	@Digits(integer = 4, message = "Publication year must be a valid 4-digit number", fraction = 0)
+	@Max(9999)
+	@Min(1000)
+	private int year;
+	
+	@Positive(message = "The price should be a positive decimal value.")
+	@DecimalMin(value = "0.01", message = "Price must be a positive decimal value")
+	private double price;
+	
+}
